@@ -6,6 +6,10 @@ on:
       artifact-name:
         required: true
         type: string
+      hook-before-build:
+        required: false
+        type: string
+      
         
 jobs:
   build-artifact:
@@ -20,6 +24,9 @@ jobs:
           cache: npm
       - name: Install dependency
         run: npm i
+      - name: Run cmd before build
+        if: ${{ inputs.hook-before-build }}
+        run: ${{ inputs.hook-before-build }}
       - name: Build
         run: npm run build
       - name: Upload artifact
