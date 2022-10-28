@@ -1,0 +1,28 @@
+name: React build artifact
+
+on:
+  workflow_call:
+    inputs:
+      artifact-name:
+        required: true
+        type: string
+        
+jobs:
+  build-artifact:
+    runs-on: self-host
+    steps:
+      - name: Use Node.js version 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+          cache: npm
+      - name: Install dependency
+        run: npm i
+      - name: Build
+        run: npm run build
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ inputs.artifact-name }}
+          path: ${{ github.workspace }}/build
+          if-no-files-found: error 
