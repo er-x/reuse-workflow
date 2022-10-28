@@ -9,7 +9,7 @@ on:
         
 jobs:
   build-artifact:
-    runs-on: self-host
+    runs-on: self-hosted
     steps:
       - name: Use Node.js version 16.x
         uses: actions/setup-node@v3
