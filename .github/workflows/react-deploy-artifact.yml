@@ -21,7 +21,6 @@ jobs:
     name: Deploy
     runs-on: self-hosted
     steps:
-      steps:
       - name: Download artifact
         uses: actions/download-artifact@v3
         with:
