@@ -1,0 +1,33 @@
+name: React deploy artifact
+
+on:
+  workflow_call:
+    inputs:
+      artifact-name:
+        required: true
+        type: string
+      container-name:
+        required: true
+        type: string
+      container-key:
+        required: true
+        type: string
+      container-destination:
+        required: true
+        type: string
+        
+jobs:
+  deploy-artifact:
+    name: Deploy
+    runs-on: self-hosted
+    steps:
+      steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ inputs.artifact-name }}
+          path: ${{ github.workspace }}/build
+      - name: Azure CLI Action
+        uses: Azure/cli@v1
+        with:
+          inlineScript: az storage blob upload-batch --source $GITHUB_WORKSPACE/build --destination ${{ inputs.container-destination }} --account-name ${{ inputs.container-name }} --account-key ${{ inputs.container-key }} --overwrite
