@@ -6,15 +6,14 @@ on:
       artifact-name:
         required: true
         type: string
-      container-name:
-        required: true
-        type: string
-      container-key:
-        required: true
-        type: string
       container-destination:
         required: true
         type: string
+    secrets:
+      CONTAINER_NAME:
+        required: true
+      CONTAINER_KEY:
+        required: true
         
 jobs:
   deploy-artifact:
@@ -29,4 +28,4 @@ jobs:
       - name: Azure CLI Action
         uses: Azure/cli@v1
         with:
-          inlineScript: az storage blob upload-batch --source $GITHUB_WORKSPACE/build --destination ${{ inputs.container-destination }} --account-name ${{ inputs.container-name }} --account-key ${{ inputs.container-key }} --overwrite
+          inlineScript: az storage blob upload-batch --source $GITHUB_WORKSPACE/build --destination ${{ inputs.container-destination }} --account-name ${{ secrets.CONTAINER_NAME }} --account-key ${{ secrets.CONTAINER_KEY }} --overwrite
