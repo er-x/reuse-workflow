@@ -11,7 +11,7 @@ jobs:
   build-artifact:
     runs-on: self-hosted
     steps:
-      - name: Checkout code ${{ github.ref }}
+      - name: Checkout code branch ${{ github.ref_name }}
         uses: actions/checkout@v3
       - name: Use Node.js version 16.x
         uses: actions/setup-node@v3
