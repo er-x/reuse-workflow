@@ -3,6 +3,9 @@ name: React build artifact
 on:
   workflow_call:
     inputs:
+      environment-name:
+        required: true
+        type: string
       artifact-name:
         required: true
         type: string
@@ -14,6 +17,7 @@ on:
 jobs:
   build-artifact:
     name: Build
+    environment: ${{ inputs.environment-name }}
     runs-on: self-hosted
     steps:
       - name: Checkout code branch ${{ github.ref_name }}
