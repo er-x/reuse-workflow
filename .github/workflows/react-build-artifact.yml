@@ -4,7 +4,10 @@ on:
   workflow_call:
     inputs:
       environment-name:
-        required: true
+        required: false
+        type: string
+      environment-url:
+        required: false
         type: string
       artifact-name:
         required: true
@@ -17,7 +20,9 @@ on:
 jobs:
   build-artifact:
     name: Build
-    environment: ${{ inputs.environment-name }}
+    environment:
+      name: ${{ inputs.environment-name }}
+      url: ${{ inputs.environment-url }}
     runs-on: self-hosted
     steps:
       - name: Checkout code branch ${{ github.ref_name }}
