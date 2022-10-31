@@ -3,6 +3,12 @@ name: React deploy artifact
 on:
   workflow_call:
     inputs:
+      environment-name:
+        required: false
+        type: string
+      environment-url:
+        required: false
+        type: string
       artifact-name:
         required: true
         type: string
@@ -18,6 +24,9 @@ on:
 jobs:
   deploy-artifact:
     name: Deploy
+    environment:
+      name: ${{ inputs.environment-name }}
+      url: ${{ inputs.environment-url }}
     runs-on: self-hosted
     steps:
       - name: Download artifact
