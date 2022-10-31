@@ -3,7 +3,7 @@ name: React build artifact
 on:
   workflow_call:
     inputs:
-      dotenv-name:
+      dotenv-file:
         required: true
         type: string
       environment-name:
@@ -40,7 +40,7 @@ jobs:
       - name: Load dotenv file
         uses: aarcangeli/load-dotenv@v1.0.0
         with:
-          filenames: ${{ inputs.dotenv-name }}
+          filenames: ${{ inputs.dotenv-file }}
       - name: Hook before build
         if: ${{ inputs.hook-before-build }}
         run: ${{ inputs.hook-before-build }}
