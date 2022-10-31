@@ -1,5 +1,8 @@
 name: React build artifact
 
+env:
+  CI: false
+
 on:
   workflow_call:
     inputs:
