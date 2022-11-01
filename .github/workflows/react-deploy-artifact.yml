@@ -40,4 +40,4 @@ jobs:
       - name: Azure CLI Action
         uses: Azure/cli@v1
         with:
-          inlineScript: az storage blob upload-batch --source $GITHUB_WORKSPACE/build --destination ${{ inputs.container-destination }} --account-name ${{ secrets.CONTAINER_NAME }} --account-key ${{ secrets.CONTAINER_KEY }} --overwrite
+          inlineScript: az storage blob upload-batch --source $GITHUB_WORKSPACE/build --destination '${{ inputs.container-destination }}' --account-name ${{ secrets.CONTAINER_NAME }} --account-key ${{ secrets.CONTAINER_KEY }} --overwrite
