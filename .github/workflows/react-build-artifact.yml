@@ -39,7 +39,7 @@ jobs:
           node-version: 16.x
           cache: npm
       - name: Install dependency
-        run: npm i --legacy-peer-deps --omit=dev
+        run: npm i --omit=dev
       - name: Load dotenv file
         uses: aarcangeli/load-dotenv@v1.0.0
         with:
