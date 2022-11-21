@@ -33,10 +33,10 @@ jobs:
     steps:
       - name: Checkout code branch ${{ github.ref_name }}
         uses: actions/checkout@v3
-      - name: Use Node.js version 18.x
+      - name: Use Node.js version 16.x
         uses: actions/setup-node@v3
         with:
-          node-version: 18.x
+          node-version: 16.x
           cache: npm
       - name: Install dependency
         run: npm i
